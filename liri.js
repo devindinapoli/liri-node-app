@@ -1,10 +1,10 @@
 require("dotenv").config();
 var Twitter = require("twitter");
-var spotify = require("spotify");
+var Spotify = require("node-spotify-api");
 var request = require("request");
 var fs = require("fs");
 var keys = require("./keys.js");
-var twitterKey = keys.twitterKey;
+
 
 var cmdArg = process.argv;
 var liriCommand = cmdArg[2];
@@ -26,7 +26,7 @@ if (liriCommand === "my-tweets") {
 
 function getTweets(){
 
-    var client = new Twitter(twitterKey);
+    var client = new Twitter(keys.twitter);
 
     var params = {screen_name: "devindinapoli92", count: 20};
 
@@ -44,7 +44,30 @@ function getTweets(){
         console.log(twitterOutput);
        }
     })
+};
+
+function findSong(song){
+    var spotify = new Spotify(keys.spotify);
+    var search;
+
+    if (song === ""){
+        search = "The Sign Ace Of Base"
+    } else {
+        search = song;
+    }
+
+    spotify.search({type: "track", query: search}, function(error, data){
+        if(error){
+            console.log("ERROR!");
+        }
+        var songInfo = data.tracks.items[0];
+        var spotifyOutput =   "-------------------------------\n" +
+        "Song Info:\n" + 
+        "-------------------------------\n" +
+        "Song Name: " + songInfo.name + "\n" +
+        "Artist: " + songInfo.artists[0].name + "\n" +
+        "Album: " + songInfo.album.name + "\n" +
+        "Preview: " + songInfo.preview_url + "\n";
+        console.log(spotifyOutput);
+    })
 }
-
-
-
