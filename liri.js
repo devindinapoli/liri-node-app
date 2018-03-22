@@ -71,3 +71,64 @@ function findSong(song){
         console.log(spotifyOutput);
     })
 }
+
+function retreiveInfo(movie){
+    var search;
+    if (movie === "") {
+        search = "Mr. Nobody"
+    } else {
+        search = movie;
+    }
+    search = search.split(' ').join('+');
+    var query = "http://www.omdbapi.com/?t=" + search + "&apikey=trilogy"
+    
+    request(query, function(error, response, body){
+    if (error || (response.statusCode !== 200)){
+        return console.log("Error Finding Entry!");
+    }
+    else {
+        var data = JSON.parse(body);
+        var movieOutput =  "-------------------------------\n" +
+        "Movie Info:\n" +
+        "Movie Title: " + data.Title + "\n" +
+        "Year Released: " + data.Released + "\n" +
+        "IMDB Rating: " + data.imdbRating + "\n" +
+        "Rotten Tomatoes Rating: " + data.Ratings[1].Value + "\n" +
+        "Country Produced: " + data.Country + "\n" +
+        "Language: " + data.Language + "\n" +
+        "Plot: " + data.Plot + "\n" + 
+        "Actors: " + data.Actors + "\n" +
+        "-------------------------------\n";
+        console.log(movieOutput);
+       
+    }
+    })
+}  
+
+function whatItSays() {
+    fs.readFile("./random.txt", "utf8", function(error, data) {
+        if (error){
+            console.log("ERROR");
+        }
+        else{
+            var commandData = data.split(",");
+            var command = commandData[0].trim();
+            var param = commandData[1].trim();
+
+            switch(command){
+                case "my-tweets":
+                getTweets();
+                break;
+
+                case "spotify-this-song":
+                findSong(param);
+                break;
+
+                case "movie-this":
+                retreiveInfo(param);
+                break;
+            }
+        }
+    }
+)};
+
