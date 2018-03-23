@@ -42,6 +42,11 @@ function getTweets(){
             "-------------------------------\n"
         }
         console.log(twitterOutput);
+        fs.appendFile("log.txt", twitterOutput, function(err){
+            if(err){
+                console.log(err);
+            }
+        })
        }
     })
 };
@@ -69,6 +74,11 @@ function findSong(song){
         "Album: " + songInfo.album.name + "\n" +
         "Preview: " + songInfo.preview_url + "\n";
         console.log(spotifyOutput);
+        fs.appendFile("log.txt", spotifyOutput, function(err){
+            if(err){
+                console.log(err);
+            }
+        })
     })
 }
 
@@ -90,6 +100,7 @@ function retreiveInfo(movie){
             var data = JSON.parse(body);
             var movieOutput =  "-------------------------------\n" +
             "Movie Info:\n" +
+            "-------------------------------\n" +
             "Movie Title: " + data.Title + "\n" +
             "Year Released: " + data.Released + "\n" +
             "IMDB Rating: " + data.imdbRating + "\n" +
@@ -100,7 +111,12 @@ function retreiveInfo(movie){
             "Actors: " + data.Actors + "\n" +
             "-------------------------------\n";
             console.log(movieOutput);
-        }
+            fs.appendFile("log.txt", movieOutput, function(err){
+                if(err){
+                    console.log(err);
+                }
+            }
+        )}
     })
 }  
 
