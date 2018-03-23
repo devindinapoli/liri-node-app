@@ -83,25 +83,24 @@ function retreiveInfo(movie){
     var query = "http://www.omdbapi.com/?t=" + search + "&apikey=trilogy"
     
     request(query, function(error, response, body){
-    if (error || (response.statusCode !== 200)){
-        return console.log("Error Finding Entry!");
-    }
-    else {
-        var data = JSON.parse(body);
-        var movieOutput =  "-------------------------------\n" +
-        "Movie Info:\n" +
-        "Movie Title: " + data.Title + "\n" +
-        "Year Released: " + data.Released + "\n" +
-        "IMDB Rating: " + data.imdbRating + "\n" +
-        "Rotten Tomatoes Rating: " + data.Ratings[1].Value + "\n" +
-        "Country Produced: " + data.Country + "\n" +
-        "Language: " + data.Language + "\n" +
-        "Plot: " + data.Plot + "\n" + 
-        "Actors: " + data.Actors + "\n" +
-        "-------------------------------\n";
-        console.log(movieOutput);
-       
-    }
+        if (error || (response.statusCode !== 200)){
+            return console.log("Error Finding Entry!");
+        }
+        else {
+            var data = JSON.parse(body);
+            var movieOutput =  "-------------------------------\n" +
+            "Movie Info:\n" +
+            "Movie Title: " + data.Title + "\n" +
+            "Year Released: " + data.Released + "\n" +
+            "IMDB Rating: " + data.imdbRating + "\n" +
+            "Rotten Tomatoes Rating: " + data.Ratings[1].Value + "\n" +
+            "Country Produced: " + data.Country + "\n" +
+            "Language: " + data.Language + "\n" +
+            "Plot: " + data.Plot + "\n" + 
+            "Actors: " + data.Actors + "\n" +
+            "-------------------------------\n";
+            console.log(movieOutput);
+        }
     })
 }  
 
@@ -131,4 +130,3 @@ function whatItSays() {
         }
     }
 )};
-
