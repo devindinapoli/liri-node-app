@@ -35,3 +35,10 @@ Tweet text: Look at this one
 Tweeted on: Tue Mar 20 21:35:13 +0000 2018
 Tweet text: tweets
 -------------------------------
+-------------------------------
+Song Info:
+-------------------------------
+Song Name: Shadow Moses
+Artist: Bring Me The Horizon
+Album: Sempiternal (Deluxe Edition)
+Preview: https://p.scdn.co/mp3-preview/a61b85bf7f2c75eaf142eab12d9616a01a97817c?cid=cd531af6d4cd48e8b9835c7b3039eff5
